@@ -8,7 +8,7 @@ RUN sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/s
 RUN echo "AllowUsers git" >> /etc/ssh/sshd_config
 
 # Adding git user
-RUN adduser git --disabled-password --system
+RUN adduser git --disabled-password --gecos ""
 
 RUN mkdir /home/git/.ssh
 
