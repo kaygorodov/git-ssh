@@ -18,5 +18,27 @@ Simple vanilla git server over ssh.
 
 4. Run a container:
 
-	host_machine$ docker run -P -d -v /host_machine/authorized_keys:/home/git/.ssh/authorized_keys -v /host_machine/data/:/data git
+	host_machine$ docker run -p 22:<exposed_port> -d -v /host_machine/authorized_keys:/home/git/.ssh/authorized_keys -v /host_machine/data/:/data git
+
+
+### Create a repo
+
+### In the container
+
+	local_machine$ ssh -p <exposed_port> git@<host_machine_ip>
+	git$ cd /data
+	git$ mkdir newrepo.git
+	git$ cd newrepo.git
+        git$ git init --bare
+
+### On your local machine:
+
+	mkdir newrepo
+	cd newrepo
+	git init
+	echo "init" > Readme
+	git add Readme
+	git commit -m "init"
+	git remote add origin ssh://git@<host_machine_ip>:<exposed_port>/data/newrepo.git/
+	git push --set-upstream origin master
 
