@@ -25,21 +25,21 @@ Simple vanilla git server over ssh.
 
 ### In the container
 
-	local_machine$ ssh -p <exposed_port> git@<host_machine_ip>
-	git$ cd /data
-	git$ mkdir newrepo.git
-	git$ cd newrepo.git
-        git$ git init --bare
+    local_machine$ ssh -p <exposed_port> git@<host_machine_ip>
+    git$ cd /data
+    git$ mkdir newrepo.git
+    git$ cd newrepo.git
+    git$ git init --bare
 
 
 ### On your local machine:
 
-	mkdir newrepo
-	cd newrepo
-	git init
-	echo "init" > Readme
-	git add Readme
-	git commit -m "init"
-	git remote add origin ssh://git@<host_machine_ip>:<exposed_port>/data/newrepo.git/
-	git push --set-upstream origin master
+    mkdir newrepo
+    cd newrepo
+    git init
+    echo "init" > Readme
+    git add Readme
+    git commit -m "init"
+    git remote add origin ssh://git@<host_machine_ip>:<exposed_port>/data/newrepo.git/
+    git push --set-upstream origin master
 
