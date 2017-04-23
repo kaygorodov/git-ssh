@@ -1,17 +1,18 @@
 FROM ubuntu:17.04
 
-RUN apt-get -y update
-RUN apt-get -y install openssh-server
-RUN apt-get -y install git
+RUN apt-get -y update && apt-get -y install openssh-server git
 
 # Setting openssh
 RUN mkdir /var/run/sshd
 RUN sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config
 
 # Adding git user
-RUN adduser --system git
-RUN mkdir -p /home/git/.ssh
+RUN adduser git
+
+WORKDIR /home/git
 
 EXPOSE 22
+
+VOLUME /data
 
 CMD ["/usr/sbin/sshd", "-D"]
