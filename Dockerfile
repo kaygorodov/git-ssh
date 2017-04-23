@@ -10,6 +10,8 @@ RUN echo "AllowUsers git" >> /etc/ssh/sshd_config
 # Adding git user
 RUN adduser git --disabled-password --system
 
+RUN mkdir /home/git/.ssh
+
 EXPOSE 22
 
 VOLUME /data
